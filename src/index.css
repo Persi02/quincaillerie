@@ -22,7 +22,6 @@ body {
     @apply w-full px-2 sm:w-10/12 sm:px-0 m-auto;
   }
 }
-
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -69,13 +68,13 @@ body {
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: #0b5fff;
+  --primary: #103469;
   --primary-foreground: oklch(0.985 0 0);
   --secondary: #ffb020;
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);
   --muted-foreground: oklch(0.556 0 0);
-  --accent: #16a34a;
+  --accent: oklch(0.97 0 0);
   --accent-foreground: oklch(0.205 0 0);
   --destructive: oklch(0.577 0.245 27.325);
   --border: oklch(0.922 0 0);
@@ -136,5 +135,13 @@ body {
   }
   body {
     @apply bg-background text-foreground;
+  }
+  .hero {
+    @apply flex min-h-[40vh] flex-col px-[10%] justify-center rounded-2xl;
+    background: url(./assets/images/hardware-store-1450799.jpg) no-repeat center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
   }
 }

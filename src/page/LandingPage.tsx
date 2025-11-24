@@ -1,5 +1,12 @@
+import { Hero, Service } from "@/components/display";
+
 const LandingPage = () => {
-  return <div>LandingPage</div>;
+  return (
+    <section className="container py-4">
+      <Hero />
+      <Service />
+    </section>
+  );
 };
 
 export default LandingPage;

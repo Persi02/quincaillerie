@@ -3,8 +3,8 @@ import LinksMobile from "./LinksMobile";
 
 const Navbar = () => {
   return (
-    <nav className="py-5">
-      <div className="container">
+    <nav className="py-2">
+      <div className="container ">
         <LinksDesktop />
         <LinksMobile />
       </div>

@@ -4,3 +4,6 @@ export { default as Footer } from "./Footer";
 export { default as Header } from "./Header";
 export { default as LinksDesktop } from "./LinksDesktop";
 export { default as LinksMobile } from "./LinksMobile";
+export { default as Hero } from "./Hero";
+export { default as Service } from "./Service";
+export { default as FormContact } from "./FormContact";
