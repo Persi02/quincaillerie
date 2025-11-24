@@ -7,3 +7,4 @@ export { default as LinksMobile } from "./LinksMobile";
 export { default as Hero } from "./Hero";
 export { default as Service } from "./Service";
 export { default as FormContact } from "./FormContact";
+export { default as CardService } from "./CardService";

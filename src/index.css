@@ -137,7 +137,7 @@ body {
     @apply bg-background text-foreground;
   }
   .hero {
-    @apply flex min-h-[40vh] flex-col px-[10%] justify-center rounded-2xl;
+    @apply flex min-h-[40vh] flex-col px-[10%] justify-center rounded-sm;
     background: url(./assets/images/hardware-store-1450799.jpg) no-repeat center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
