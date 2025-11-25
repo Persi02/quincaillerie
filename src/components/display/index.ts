@@ -8,3 +8,5 @@ export { default as Hero } from "./Hero";
 export { default as Service } from "./Service";
 export { default as FormContact } from "./FormContact";
 export { default as CardService } from "./CardService";
+export { default as ProductPhares } from "./ProductPhares";
+export { default as CardProduct } from "./CardProduct";
