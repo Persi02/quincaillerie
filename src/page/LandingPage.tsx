@@ -1,12 +1,21 @@
-import { Hero, ProductPhares, Service } from "@/components/display";
-import { productPhare } from "@/data/data";
+import {
+  Hero,
+  Map,
+  WrapProduct,
+  Promotion,
+  Service,
+} from "@/components/display";
+import { data, productPhare, productPromotion } from "@/data/data";
 
 const LandingPage = () => {
   return (
     <section className="py-4">
       <Hero />
       <Service />
-      <ProductPhares productPhares={productPhare} />
+      <WrapProduct products={productPhare} title="Produits phares" />
+      <Promotion productPromotion={productPromotion} />
+      <WrapProduct products={data} title="Nouveau produits" />
+      <Map />
     </section>
   );
 };

@@ -12,7 +12,7 @@ type Props = {
 };
 const CardService: React.FC<Props> = ({ text, titleSize }) => {
   return (
-    <Card className="border-0 bg-neutral-100 w-9/12 mx-auto sm:w-full hover:bg-neutral-200 ease-in-out duration-200">
+    <Card className="border bg-neutral-100 w-9/12 mx-auto sm:w-full hover:bg-neutral-200 ease-in-out duration-200">
       <CardHeader>
         {text === "outils" && (
           <Wrench className="w-full text-secondary" size={50} strokeWidth={2} />

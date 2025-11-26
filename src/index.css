@@ -21,6 +21,9 @@ body {
   .container {
     @apply w-full px-2 sm:w-10/12 sm:px-0 m-auto;
   }
+  .banner {
+    @apply w-full sm:w-10/12 m-auto;
+  }
 }
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
@@ -137,8 +140,8 @@ body {
     @apply bg-background text-foreground;
   }
   .hero {
-    @apply flex min-h-[40vh] flex-col px-[10%] justify-center rounded-sm;
-    background: url(./assets/images/hardware-store-1450799.jpg) no-repeat center;
+    @apply flex min-h-[40vh] flex-col px-[10%] justify-center rounded-sm bg-no-repeat;
+    background: url(./assets/images/hardware-store-1450799.jpg) bottom;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;

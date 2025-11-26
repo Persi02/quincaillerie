@@ -7,7 +7,7 @@ import {
   viseCarenage,
 } from "@/assets/images";
 import type { Product } from "@/utils/type";
-export const product: Product[] = [
+export const data: Product[] = [
   {
     name: "vane",
     img: vane,
@@ -25,7 +25,7 @@ export const product: Product[] = [
     description: "made in vietnam",
   },
   {
-    name: "vise carenage",
+    name: "Clé mix",
     img: viseCarenage,
     price: 200,
     categorie: "oulils et equipement",
@@ -76,11 +76,11 @@ export const productPhare: Product[] = [
     description: "made in vietnam",
   },
   {
-    name: "tournevise",
-    img: tournevise,
-    price: 9000,
-    categorie: "oulils et equipement",
-    stock: 100,
+    name: "screws",
+    img: screws,
+    price: 4000,
+    categorie: "equipement electrique",
+    stock: 200,
     description: "made in vietnam",
   },
   {
@@ -92,3 +92,12 @@ export const productPhare: Product[] = [
     description: "made in vietnam",
   },
 ];
+
+export const productPromotion: Product = {
+  name: "tournevise",
+  img: tournevise,
+  price: 9000,
+  categorie: "oulils et equipement",
+  stock: 100,
+  description: "made in vietnam",
+};

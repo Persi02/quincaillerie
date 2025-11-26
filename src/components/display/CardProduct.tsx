@@ -13,7 +13,7 @@ type Props = {
 
 const CardProduct: React.FC<Props> = ({ product }) => {
   return (
-    <Card className="border-0 bg-neutral-100 p-0 w-10/12 mx-auto sm:w-full hover:scale-105 ease-in-out duration-200">
+    <Card className="border-0 bg-neutral-100 p-0 w-10/12 mx-auto sm:w-full hover:bg-white ease-in-out duration-200">
       <CardContent className="w-full h-50 p-0">
         <img
           src={product.img}
@@ -27,7 +27,7 @@ const CardProduct: React.FC<Props> = ({ product }) => {
       </CardHeader>
 
       <CardFooter className="flex justify-end p-3 pt-0">
-        <Button>Details</Button>
+        <Button variant={"outline"}>Voir les details</Button>
       </CardFooter>
     </Card>
   );
