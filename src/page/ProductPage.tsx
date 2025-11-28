@@ -6,6 +6,7 @@ import { useState } from "react";
 const ProductPage = () => {
   const [products, setProducts] = useState<Product[]>(data);
   const [selectValue, setSelectValue] = useState<string>("Tous");
+  const [inputValue, setInputValue] = useState<string>("");
   const fields = [
     "Tous",
     "Matériau de construction",
@@ -14,10 +15,17 @@ const ProductPage = () => {
     "equipement electrique",
   ];
   const ProduitsFiltered = products.filter((product) => {
-    if (selectValue === "Tous") {
+    if (selectValue === "Tous" && inputValue === "") {
       return product;
-    } else {
+    } else if (selectValue === "Tous" && inputValue !== "") {
+      return product.name.toLowerCase().includes(inputValue.toLowerCase());
+    } else if (selectValue !== "Tous" && inputValue === "") {
       return product.categorie === selectValue.toLowerCase();
+    } else if (selectValue !== "Tous" && inputValue !== "") {
+      return (
+        product.categorie === selectValue.toLowerCase() &&
+        product.name.toLowerCase().includes(inputValue.toLowerCase())
+      );
     }
   });
   console.log(setProducts);
@@ -28,6 +36,8 @@ const ProductPage = () => {
         fields={fields}
         setSelectValue={setSelectValue}
         selectValue={selectValue}
+        inputValue={inputValue}
+        setInputValue={setInputValue}
       />
       <WrapProduct
         products={ProduitsFiltered}
