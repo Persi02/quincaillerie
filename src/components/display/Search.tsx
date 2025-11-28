@@ -28,7 +28,9 @@ const Search: React.FC<Props> = ({
           name="select_product"
           id="select_product"
           value={selectValue}
+          defaultValue={"Tous"}
           onChange={(e) => setSelectValue(e.target.value)}
+          className="w-1/3"
         >
           {fields.map((field) => (
             <option key={field} value={field}>
