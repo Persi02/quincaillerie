@@ -1,7 +1,7 @@
 export type Product = {
   _id?: string;
   name: string;
-  img: string;
+  image: string;
   price: number;
   categorie: string;
   description: string;
@@ -23,4 +23,10 @@ export type Invoce = {
   items: InvoceItem[];
   totalAmount: number;
   cretedAt?: string;
+};
+
+export type landingPageResponse = {
+  featured: Product[] | null;
+  promo: Product[] | null;
+  latest: Product[] | null;
 };

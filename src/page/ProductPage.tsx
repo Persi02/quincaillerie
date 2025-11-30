@@ -1,10 +1,10 @@
 import { Search, WrapProduct } from "@/components/display";
 import type { Product } from "@/utils/type";
-import { data } from "@/data/data";
-import { useState } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 const ProductPage = () => {
-  const [products, setProducts] = useState<Product[]>(data);
+  const [products, setProducts] = useState<Product[]>([]);
   const [selectValue, setSelectValue] = useState<string>("Tous");
   const [inputValue, setInputValue] = useState<string>("");
   const fields = [
@@ -28,7 +28,19 @@ const ProductPage = () => {
       );
     }
   });
-  console.log(setProducts);
+  useEffect(() => {
+    const fetchAllProducts = async () => {
+      try {
+        const res = await axios.get<Product[]>(
+          "http://localhost:4400/api/products"
+        );
+        setProducts(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchAllProducts();
+  }, []);
 
   return (
     <section>

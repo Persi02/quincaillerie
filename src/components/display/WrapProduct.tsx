@@ -12,7 +12,7 @@ const WrapProduct: React.FC<Props> = ({ products, title }) => {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
         {products.length > 0 ? (
           products.map((product) => (
-            <div key={product.name}>
+            <div key={product._id}>
               <CardProduct product={product} />
             </div>
           ))

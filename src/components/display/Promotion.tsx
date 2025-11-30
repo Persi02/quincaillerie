@@ -8,7 +8,7 @@ const Promotion: React.FC<Props> = ({ productPromotion }) => {
     <div className=" h-[30vh] flex border shadow-xl banner bg-primary text-white rounded-sm overflow-hidden ">
       <div className="w-1/2 h-full">
         <img
-          src={productPromotion.img}
+          src={productPromotion.image}
           alt="image-product"
           className="w-full h-full object-cover"
         />
@@ -25,7 +25,10 @@ const Promotion: React.FC<Props> = ({ productPromotion }) => {
           <span className="text-secondary text-xl">
             {productPromotion.price - (productPromotion.price / 100) * 10} AR
           </span>{" "}
-          au lieu de <span className="text-xl">{productPromotion.price}</span>{" "}
+          au lieu de{" "}
+          <span className="text-xl line-through decoration-red-500">
+            {productPromotion.price}
+          </span>{" "}
           Ar
         </p>
       </div>

@@ -16,7 +16,7 @@ const CardProduct: React.FC<Props> = ({ product }) => {
     <Card className="border-0 bg-neutral-100 p-0 w-10/12 mx-auto sm:w-full hover:bg-white ease-in-out duration-200">
       <CardContent className="w-full h-50 p-0">
         <img
-          src={product.img}
+          src={product.image}
           alt="product-img"
           className="w-full h-full object-cover"
         ></img>

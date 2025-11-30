@@ -10,7 +10,7 @@ import type { Product } from "@/utils/type";
 export const data: Product[] = [
   {
     name: "vane",
-    img: vane,
+    image: vane,
     price: 4000,
     categorie: "matériau de construction",
     stock: 30,
@@ -18,7 +18,7 @@ export const data: Product[] = [
   },
   {
     name: "vise",
-    img: vise,
+    image: vise,
     price: 3000,
     categorie: "oulils et equipement",
     stock: 100,
@@ -26,7 +26,7 @@ export const data: Product[] = [
   },
   {
     name: "Clé mix",
-    img: viseCarenage,
+    image: viseCarenage,
     price: 200,
     categorie: "oulils et equipement",
     stock: 300,
@@ -34,7 +34,7 @@ export const data: Product[] = [
   },
   {
     name: "tournevise",
-    img: tournevise,
+    image: tournevise,
     price: 9000,
     categorie: "oulils et equipement",
     stock: 100,
@@ -42,7 +42,7 @@ export const data: Product[] = [
   },
   {
     name: "painceau",
-    img: painceau,
+    image: painceau,
     price: 1500,
     categorie: "peinture et bricolage",
     stock: 40,
@@ -50,7 +50,7 @@ export const data: Product[] = [
   },
   {
     name: "screws",
-    img: screws,
+    image: screws,
     price: 4000,
     categorie: "equipement electrique",
     stock: 200,
@@ -61,7 +61,7 @@ export const data: Product[] = [
 export const productPhare: Product[] = [
   {
     name: "vise",
-    img: vise,
+    image: vise,
     price: 3000,
     categorie: "oulils et equipement",
     stock: 100,
@@ -69,7 +69,7 @@ export const productPhare: Product[] = [
   },
   {
     name: "vane",
-    img: vane,
+    image: vane,
     price: 4000,
     categorie: "matériau de construction",
     stock: 30,
@@ -77,7 +77,7 @@ export const productPhare: Product[] = [
   },
   {
     name: "screws",
-    img: screws,
+    image: screws,
     price: 4000,
     categorie: "equipement electrique",
     stock: 200,
@@ -85,7 +85,7 @@ export const productPhare: Product[] = [
   },
   {
     name: "painceau",
-    img: painceau,
+    image: painceau,
     price: 1500,
     categorie: "peinture et bricolage",
     stock: 40,
@@ -95,7 +95,7 @@ export const productPhare: Product[] = [
 
 export const productPromotion: Product = {
   name: "tournevise",
-  img: tournevise,
+  image: tournevise,
   price: 9000,
   categorie: "oulils et equipement",
   stock: 100,
