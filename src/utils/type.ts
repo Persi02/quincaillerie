@@ -3,7 +3,7 @@ export type Product = {
   name: string;
   image: string;
   price: number;
-  categorie: string;
+  category: string;
   description: string;
   stock: number;
   createdAt?: string;
@@ -29,4 +29,7 @@ export type landingPageResponse = {
   featured: Product[] | null;
   promo: Product[] | null;
   latest: Product[] | null;
+};
+export type ProductPageResponse = {
+  products: Product[] | null;
 };

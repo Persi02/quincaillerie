@@ -1,10 +1,10 @@
 import { Search, WrapProduct } from "@/components/display";
-import type { Product } from "@/utils/type";
-import axios from "axios";
+import type { Product, ProductPageResponse } from "@/utils/type";
 import { useEffect, useState } from "react";
+import { useLoaderData } from "react-router-dom";
 
 const ProductPage = () => {
-  const [products, setProducts] = useState<Product[]>([]);
+  const { products } = useLoaderData() as ProductPageResponse;
   const [selectValue, setSelectValue] = useState<string>("Tous");
   const [inputValue, setInputValue] = useState<string>("");
   const fields = [
@@ -14,34 +14,24 @@ const ProductPage = () => {
     "peinture et bricolage",
     "equipement electrique",
   ];
-  const ProduitsFiltered = products.filter((product) => {
+  const produitsFiltered = products?.filter((product) => {
     if (selectValue === "Tous" && inputValue === "") {
       return product;
     } else if (selectValue === "Tous" && inputValue !== "") {
       return product.name.toLowerCase().includes(inputValue.toLowerCase());
     } else if (selectValue !== "Tous" && inputValue === "") {
-      return product.categorie === selectValue.toLowerCase();
+      return product.category === selectValue.toLowerCase();
     } else if (selectValue !== "Tous" && inputValue !== "") {
       return (
-        product.categorie === selectValue.toLowerCase() &&
+        product.category === selectValue.toLowerCase() &&
         product.name.toLowerCase().includes(inputValue.toLowerCase())
       );
     }
   });
-  useEffect(() => {
-    const fetchAllProducts = async () => {
-      try {
-        const res = await axios.get<Product[]>(
-          "http://localhost:4400/api/products"
-        );
-        setProducts(res.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchAllProducts();
-  }, []);
 
+  useEffect(() => {
+    console.log(produitsFiltered);
+  }, [produitsFiltered]);
   return (
     <section>
       <Search
@@ -52,7 +42,7 @@ const ProductPage = () => {
         setInputValue={setInputValue}
       />
       <WrapProduct
-        products={ProduitsFiltered}
+        products={produitsFiltered as Product[]}
         title={`${selectValue.replace(/^./, (str) =>
           str.toUpperCase()
         )} produits`}
