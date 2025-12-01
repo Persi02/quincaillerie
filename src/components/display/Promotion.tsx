@@ -15,7 +15,10 @@ const Promotion: React.FC<Props> = ({ productPromotion }) => {
       </div>
       <div className="w-1/2 flex flex-col justify-center items-center gap-3 p-3">
         <h3 className="text-2xl font-bold text-center">
-          Produit en promotion de <span className="text-green-500">-10%</span>
+          Produit en promotion de{" "}
+          <span className="text-green-500">
+            {`-${productPromotion.pourcentPromotion}%`}
+          </span>
         </h3>
         <p className="text-xl  text-secondary">
           {productPromotion.name.toUpperCase()}
@@ -23,7 +26,10 @@ const Promotion: React.FC<Props> = ({ productPromotion }) => {
         <p className="text-center">
           Coût{" "}
           <span className="text-secondary text-xl">
-            {productPromotion.price - (productPromotion.price / 100) * 10} AR
+            {productPromotion.price -
+              (productPromotion.price / 100) *
+                productPromotion.pourcentPromotion}{" "}
+            AR
           </span>{" "}
           au lieu de{" "}
           <span className="text-xl line-through decoration-red-500">

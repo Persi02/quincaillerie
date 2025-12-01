@@ -8,6 +8,7 @@ export type Product = {
   stock: number;
   createdAt?: string;
   updateAt?: string;
+  pourcentPromotion: number;
 };
 export type InvoceItem = {
   ProductId: string;
