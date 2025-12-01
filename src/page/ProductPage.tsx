@@ -1,6 +1,6 @@
 import { Search, WrapProduct } from "@/components/display";
 import type { Product, ProductPageResponse } from "@/utils/type";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useLoaderData } from "react-router-dom";
 
 const ProductPage = () => {
@@ -28,10 +28,6 @@ const ProductPage = () => {
       );
     }
   });
-
-  useEffect(() => {
-    console.log(produitsFiltered);
-  }, [produitsFiltered]);
   return (
     <section>
       <Search

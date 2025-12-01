@@ -7,6 +7,8 @@ import LandingPage from "./page/LandingPage.tsx";
 import About from "./page/About.tsx";
 import { landingPageLoader } from "./utils/landingLoader.ts";
 import { productPageLoader } from "./utils/productsLoader.ts";
+import ErrorElement from "./components/display/ErrorElement.tsx";
+import NotFound from "./page/NotFound.tsx";
 
 const router = createBrowserRouter([
   {
@@ -17,12 +19,18 @@ const router = createBrowserRouter([
         index: true,
         element: <LandingPage />,
         loader: landingPageLoader,
-        errorElement: <h1>404</h1>,
+        errorElement: <ErrorElement />,
       },
-      { path: "product", element: <ProductPage />, loader: productPageLoader },
+      {
+        path: "product",
+        element: <ProductPage />,
+        loader: productPageLoader,
+        errorElement: <ErrorElement />,
+      },
       { path: "about", element: <About /> },
     ],
   },
+  { path: "*", element: <NotFound /> },
 ]);
 
 createRoot(document.getElementById("root")!).render(

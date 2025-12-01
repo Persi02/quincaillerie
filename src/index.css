@@ -1,14 +1,8 @@
-@font-face {
-  font-family: roboto;
-  src: url(./assets/font/Roboto/static/Roboto-Regular.ttf);
-}
-@font-face {
-  font-family: science;
-  src: url(./assets/font/Science_Gothic/static/ScienceGothic-Regular.ttf);
-}
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Science+Gothic:wght@100..900&display=swap");
+
 body {
-  font-family: roboto, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: Roboto, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 @import "tailwindcss";
 @import "tw-animate-css";
@@ -16,7 +10,7 @@ body {
 @custom-variant dark (&:is(.dark *));
 @layer {
   .science-font {
-    font-family: science;
+    font-family: Science Gothic, sans-serif;
   }
   .container {
     @apply w-full px-2 sm:w-10/12 sm:px-0 m-auto;

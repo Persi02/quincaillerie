@@ -16,7 +16,7 @@ const LandingPage = () => {
       <Hero />
       <Service />
       {featured && <WrapProduct products={featured} title="Produits phares" />}
-      {promo && <Promotion productPromotion={promo[0]} />}
+      {promo && promo.length > 0 && <Promotion productPromotion={promo[0]} />}
       {latest && (
         <WrapProduct products={latest} title="Nouveau produits" />
       )}{" "}
