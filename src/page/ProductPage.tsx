@@ -1,7 +1,8 @@
 import { Search, WrapProduct } from "@/components/display";
+import { Spinner } from "@/components/ui/spinner";
 import type { Product, ProductPageResponse } from "@/utils/type";
 import { useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigation } from "react-router-dom";
 
 const ProductPage = () => {
   const { products } = useLoaderData() as ProductPageResponse;
@@ -28,6 +29,14 @@ const ProductPage = () => {
       );
     }
   });
+  const navigation = useNavigation();
+  if (navigation.state === "loading") {
+    return (
+      <section className="section flex justify-center items-center h-64">
+        <Spinner className="size-9" />
+      </section>
+    );
+  }
   return (
     <section>
       <Search

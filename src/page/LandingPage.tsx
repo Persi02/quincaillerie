@@ -5,11 +5,20 @@ import {
   Promotion,
   Service,
 } from "@/components/display";
+import { Spinner } from "@/components/ui/spinner";
 import type { landingPageResponse } from "@/utils/type";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigation } from "react-router-dom";
 
 const LandingPage = () => {
   const { featured, promo, latest } = useLoaderData() as landingPageResponse;
+  const navigation = useNavigation();
+  if (navigation.state === "loading") {
+    return (
+      <section className="section flex justify-center items-center h-64">
+        <Spinner className="size-9" />
+      </section>
+    );
+  }
 
   return (
     <section className="py-4">
