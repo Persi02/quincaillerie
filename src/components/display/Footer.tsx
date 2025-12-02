@@ -3,7 +3,7 @@ import FormContact from "./FormContact";
 
 const Footer = () => {
   return (
-    <footer className="footer  bg-primary py-8 ">
+    <footer id="footer" className="footer  bg-primary py-8 ">
       <div className="grid grid-cols-1 sm:grid-cols-2 container gap-3">
         <div className="flex flex-col gap-3 text-white items-center sm:items-start">
           <h3 className="text-2xl font-bold tracking-[0.1rem] science-font ">
