@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const ProductAPI = "https://quincaillerie-back.onrender.com/api/products";
+const ProductAPI = "http://localhost:4400/api/products";
 export const productFetch = axios.create({
   baseURL: ProductAPI,
   headers: {

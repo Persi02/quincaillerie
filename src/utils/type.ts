@@ -34,3 +34,9 @@ export type landingPageResponse = {
 export type ProductPageResponse = {
   products: Product[] | null;
 };
+export type Productdata = {
+  page: number;
+  limit: number;
+  totalProducts: number;
+  products: Product[];
+};
