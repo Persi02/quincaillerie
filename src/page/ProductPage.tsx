@@ -1,10 +1,13 @@
 import { PaginationContainer, Search, WrapProduct } from "@/components/display";
 import { Spinner } from "@/components/ui/spinner";
 import type { Product, ProductPageResponse } from "@/utils/type";
+import { useState } from "react";
 import { useLoaderData, useNavigation } from "react-router-dom";
 
 const ProductPage = () => {
   const { products, params } = useLoaderData() as ProductPageResponse;
+  const [searchTerm, setSearchTerm] = useState("");
+  const [category, setCategory] = useState("");
 
   const fields = [
     "Tous",
@@ -22,11 +25,16 @@ const ProductPage = () => {
       </section>
     );
   }
-  console.log(params);
 
   return (
     <section>
-      <Search fields={fields} params={params} />
+      <Search
+        fields={fields}
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+        category={category}
+        setCategory={setCategory}
+      />
       <WrapProduct
         products={products as Product[]}
         title={`${
