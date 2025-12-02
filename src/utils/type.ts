@@ -32,5 +32,12 @@ export type landingPageResponse = {
   latest: Product[] | null;
 };
 export type ProductPageResponse = {
+  page?: number;
+  limit?: number;
+  totalProducts: number;
   products: Product[] | null;
+};
+
+export type FilterParams = {
+  page?: string;
 };
