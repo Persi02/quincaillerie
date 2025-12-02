@@ -11,7 +11,12 @@ const Header = () => {
       >
         Quincaillerie
       </div>
-      <Button variant="secondary" className="font-bold">
+      <Button
+      onClick={() => {
+          const el = document.getElementById("footer");
+          if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+        }}
+       variant="secondary" className="font-bold">
         Constactez Nous
       </Button>
     </div>
