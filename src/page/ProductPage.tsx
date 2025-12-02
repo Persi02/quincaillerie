@@ -1,4 +1,4 @@
-import { Search, WrapProduct } from "@/components/display";
+import { PaginationContainer, Search, WrapProduct } from "@/components/display";
 import { Spinner } from "@/components/ui/spinner";
 import type { Product, ProductPageResponse } from "@/utils/type";
 import { useState } from "react";
@@ -52,6 +52,7 @@ const ProductPage = () => {
           str.toUpperCase()
         )} produits`}
       />
+      <PaginationContainer />
     </section>
   );
 };

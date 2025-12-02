@@ -13,3 +13,5 @@ export { default as CardProduct } from "./CardProduct";
 export { default as Promotion } from "./Promotion";
 export { default as Map } from "./Map";
 export { default as Search } from "./Search";
+export { default as PaginationContainer } from "./PaginationContainer";
+export { default as ErrorElement } from "./ErrorElement";
