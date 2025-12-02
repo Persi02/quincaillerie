@@ -1,13 +1,11 @@
 import { PaginationContainer, Search, WrapProduct } from "@/components/display";
 import { Spinner } from "@/components/ui/spinner";
 import type { Product, ProductPageResponse } from "@/utils/type";
-import { useState } from "react";
 import { useLoaderData, useNavigation } from "react-router-dom";
 
 const ProductPage = () => {
-  const { products } = useLoaderData() as ProductPageResponse;
-  const [selectValue, setSelectValue] = useState<string>("Tous");
-  const [inputValue, setInputValue] = useState<string>("");
+  const { products, params } = useLoaderData() as ProductPageResponse;
+
   const fields = [
     "Tous",
     "Matériau de construction",
@@ -15,20 +13,7 @@ const ProductPage = () => {
     "peinture et bricolage",
     "equipement electrique",
   ];
-  const produitsFiltered = products?.filter((product) => {
-    if (selectValue === "Tous" && inputValue === "") {
-      return product;
-    } else if (selectValue === "Tous" && inputValue !== "") {
-      return product.name.toLowerCase().includes(inputValue.toLowerCase());
-    } else if (selectValue !== "Tous" && inputValue === "") {
-      return product.category.toLowerCase() === selectValue.toLowerCase();
-    } else if (selectValue !== "Tous" && inputValue !== "") {
-      return (
-        product.category === selectValue.toLowerCase() &&
-        product.name.toLowerCase().includes(inputValue.toLowerCase())
-      );
-    }
-  });
+
   const navigation = useNavigation();
   if (navigation.state === "loading") {
     return (
@@ -37,20 +22,16 @@ const ProductPage = () => {
       </section>
     );
   }
+  console.log(params);
+
   return (
     <section>
-      <Search
-        fields={fields}
-        setSelectValue={setSelectValue}
-        selectValue={selectValue}
-        inputValue={inputValue}
-        setInputValue={setInputValue}
-      />
+      <Search fields={fields} params={params} />
       <WrapProduct
-        products={produitsFiltered as Product[]}
-        title={`${selectValue.replace(/^./, (str) =>
-          str.toUpperCase()
-        )} produits`}
+        products={products as Product[]}
+        title={`${
+          params.category?.replace(/^./, (str) => str.toUpperCase()) ?? "Tous"
+        } produits`}
       />
       <PaginationContainer />
     </section>

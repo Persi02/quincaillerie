@@ -13,6 +13,8 @@ export const productPageLoader: LoaderFunction = async ({
 
   const formattedParams = {
     page: params.page ? parseFloat(params.page) : 0,
+    category: params.category,
+    search: params.search,
     limit: productParams.limit,
   };
   try {
@@ -24,9 +26,15 @@ export const productPageLoader: LoaderFunction = async ({
       totalProducts: res.data.totalProducts,
       products: res.data.products,
       limit: productParams.limit,
+      params,
     };
   } catch (error) {
     console.log(error);
-    return { totalProducts: 0, products: null, limit: productParams.limit };
+    return {
+      totalProducts: 0,
+      products: null,
+      limit: productParams.limit,
+      params,
+    };
   }
 };

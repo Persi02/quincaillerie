@@ -1,34 +1,25 @@
+import type { FilterParams } from "@/utils/type";
 import { Input } from "../ui/input";
 
 type Props = {
   fields: string[];
-  setSelectValue: (v: string) => void;
-  selectValue: string;
-  inputValue: string;
-  setInputValue: (v: string) => void;
+  params: FilterParams;
 };
-const Search: React.FC<Props> = ({
-  fields,
-  selectValue,
-  setSelectValue,
-  setInputValue,
-  inputValue,
-}) => {
+const Search: React.FC<Props> = ({ params, fields }) => {
   return (
     <div className="container py-8">
       <form className="flex gap-3">
         <Input
           type="text"
+          name="search"
           className="w-full"
           placeholder="Rechercher des produits ..."
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
+          defaultValue={params.search}
         />
         <select
-          name="select_product"
+          name="category"
           id="select_product"
-          value={selectValue}
-          onChange={(e) => setSelectValue(e.target.value)}
+          defaultValue={params.category}
           className="w-1/3"
         >
           {fields.map((field) => (
@@ -37,6 +28,7 @@ const Search: React.FC<Props> = ({
             </option>
           ))}
         </select>
+        <button type="submit">search</button>
       </form>
     </div>
   );

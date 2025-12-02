@@ -36,8 +36,11 @@ export type ProductPageResponse = {
   limit?: number;
   totalProducts: number;
   products: Product[] | null;
+  params: FilterParams;
 };
 
 export type FilterParams = {
   page?: string;
+  search?: string;
+  category?: string;
 };
