@@ -1,4 +1,4 @@
-import { Search, WrapProduct } from "@/components/display";
+import { PaginationContainer, Search, WrapProduct } from "@/components/display";
 import { Spinner } from "@/components/ui/spinner";
 import type { Product, ProductPageResponse } from "@/utils/type";
 import { useState } from "react";
@@ -21,7 +21,7 @@ const ProductPage = () => {
     } else if (selectValue === "Tous" && inputValue !== "") {
       return product.name.toLowerCase().includes(inputValue.toLowerCase());
     } else if (selectValue !== "Tous" && inputValue === "") {
-      return product.category === selectValue.toLowerCase();
+      return product.category.toLowerCase() === selectValue.toLowerCase();
     } else if (selectValue !== "Tous" && inputValue !== "") {
       return (
         product.category === selectValue.toLowerCase() &&
@@ -52,6 +52,7 @@ const ProductPage = () => {
           str.toUpperCase()
         )} produits`}
       />
+      <PaginationContainer />
     </section>
   );
 };
