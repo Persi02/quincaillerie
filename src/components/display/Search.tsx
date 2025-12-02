@@ -1,5 +1,6 @@
 import type { FilterParams } from "@/utils/type";
 import { Input } from "../ui/input";
+import { Button } from "../ui/button";
 
 type Props = {
   fields: string[];
@@ -28,7 +29,8 @@ const Search: React.FC<Props> = ({ params, fields }) => {
             </option>
           ))}
         </select>
-        <button type="submit">search</button>
+        <Button type="submit">search</Button>
+        <Button variant={"outline"}>Reset</Button>
       </form>
     </div>
   );
