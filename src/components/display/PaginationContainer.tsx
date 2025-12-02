@@ -87,21 +87,23 @@ const PaginationContainer = () => {
   }
 
   return (
-    <Pagination>
-      <PaginationContent>
-        {pageActive > 1 && objectsInTotal > objectPerPage && (
-          <PaginationItem>
-            <PaginationPrevious to={prevUrl} size={"default"} />
-          </PaginationItem>
-        )}
-        {buildContent()}
-        {pageActive < lastPage && objectsInTotal > objectPerPage && (
-          <PaginationItem>
-            <PaginationNext to={nextUrl} size={"default"} />
-          </PaginationItem>
-        )}
-      </PaginationContent>
-    </Pagination>
+    <div className="mb-8">
+      <Pagination>
+        <PaginationContent>
+          {pageActive > 1 && objectsInTotal > objectPerPage && (
+            <PaginationItem>
+              <PaginationPrevious to={prevUrl} size={"default"} />
+            </PaginationItem>
+          )}
+          {buildContent()}
+          {pageActive < lastPage && objectsInTotal > objectPerPage && (
+            <PaginationItem>
+              <PaginationNext to={nextUrl} size={"default"} />
+            </PaginationItem>
+          )}
+        </PaginationContent>
+      </Pagination>
+    </div>
   );
 };
 
