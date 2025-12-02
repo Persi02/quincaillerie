@@ -2,7 +2,7 @@ import type { LoaderFunction } from "react-router-dom";
 import { productFetch } from "./customFetch";
 import type { FilterParams, ProductPageResponse } from "./type";
 const productParams = {
-  limit: 2,
+  limit: 10,
 };
 export const productPageLoader: LoaderFunction = async ({
   request,
@@ -23,9 +23,10 @@ export const productPageLoader: LoaderFunction = async ({
     return {
       totalProducts: res.data.totalProducts,
       products: res.data.products,
+      limit: productParams.limit,
     };
   } catch (error) {
     console.log(error);
-    return { totalProducts: 0, products: null };
+    return { totalProducts: 0, products: null, limit: productParams.limit };
   }
 };

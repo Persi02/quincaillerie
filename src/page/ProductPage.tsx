@@ -21,7 +21,7 @@ const ProductPage = () => {
     } else if (selectValue === "Tous" && inputValue !== "") {
       return product.name.toLowerCase().includes(inputValue.toLowerCase());
     } else if (selectValue !== "Tous" && inputValue === "") {
-      return product.category === selectValue.toLowerCase();
+      return product.category.toLowerCase() === selectValue.toLowerCase();
     } else if (selectValue !== "Tous" && inputValue !== "") {
       return (
         product.category === selectValue.toLowerCase() &&

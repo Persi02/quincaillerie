@@ -13,11 +13,11 @@ import { type ReactNode } from "react";
 import type { ProductPageResponse } from "@/utils/type";
 
 const PaginationContainer = () => {
-  const { totalProducts } = useLoaderData() as ProductPageResponse;
+  const { totalProducts, limit } = useLoaderData() as ProductPageResponse;
   const { pathname, search } = useLocation();
   const searchParams = new URLSearchParams(search);
   const pageActive: number = Number(searchParams.get("page")) || 1;
-  const objectPerPage = 2;
+  const objectPerPage = limit ? limit : 0;
   const objectsInTotal: number = totalProducts ? totalProducts : 0;
   let lastPage: number;
   if (objectsInTotal % objectPerPage === 0) {
