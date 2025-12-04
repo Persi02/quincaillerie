@@ -135,7 +135,7 @@ body {
   }
   .hero {
     @apply flex min-h-[40vh] flex-col px-[10%] justify-center rounded-sm bg-no-repeat;
-    background: url("couverture.jpg") bottom;
+    background: url("./assets/image/couverture.jpg") bottom;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
