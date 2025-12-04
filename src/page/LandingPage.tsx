@@ -5,30 +5,42 @@ import {
   Promotion,
   Service,
 } from "@/components/display";
-import { Spinner } from "@/components/ui/spinner";
-import type { landingPageResponse } from "@/utils/type";
-import { useLoaderData, useNavigation } from "react-router-dom";
+import {
+  productFeturedFetcher,
+  productLatestFetcher,
+  productPromoFetcher,
+} from "@/utils/landingLoader";
+import { useQuery } from "@tanstack/react-query";
 
 const LandingPage = () => {
-  const { featured, promo, latest } = useLoaderData() as landingPageResponse;
-  const navigation = useNavigation();
-  if (navigation.state === "loading") {
-    return (
-      <section className="section flex justify-center items-center h-64">
-        <Spinner className="size-9" />
-      </section>
-    );
-  }
+  const latestQuery = useQuery({
+    queryKey: ["products", "latest"],
+    queryFn: productLatestFetcher,
+  });
+
+  const featuredQuery = useQuery({
+    queryKey: ["products", "featured"],
+    queryFn: productFeturedFetcher,
+  });
+
+  const promoQuery = useQuery({
+    queryKey: ["products", "promo"],
+    queryFn: productPromoFetcher,
+  });
 
   return (
     <section className="py-4">
       <Hero />
       <Service />
-      {featured && <WrapProduct products={featured} title="Produits phares" />}
-      {promo && promo.length > 0 && <Promotion productPromotion={promo[0]} />}
-      {latest && (
-        <WrapProduct products={latest} title="Nouveau produits" />
-      )}{" "}
+      {featuredQuery.data && (
+        <WrapProduct products={featuredQuery.data} title="Produits phares" />
+      )}
+      {promoQuery.data && promoQuery.data.length > 0 && (
+        <Promotion productPromotion={promoQuery.data[0]} />
+      )}
+      {latestQuery.data && (
+        <WrapProduct products={latestQuery.data} title="Nouveau produits" />
+      )}
       <Map />
     </section>
   );

@@ -1,14 +1,19 @@
 import { PaginationContainer, Search, WrapProduct } from "@/components/display";
 import { Spinner } from "@/components/ui/spinner";
-import type { Product, ProductPageResponse } from "@/utils/type";
+import { useProductsQuery } from "@/hooks/useProductsQuery";
+import type { Product } from "@/utils/type";
 import { useState } from "react";
-import { useLoaderData, useNavigation } from "react-router-dom";
 
 const ProductPage = () => {
-  const { products, params } = useLoaderData() as ProductPageResponse;
-  const [searchTerm, setSearchTerm] = useState("");
-  const [category, setCategory] = useState("");
-
+  const [page, setPage] = useState(1);
+  const [limit] = useState(10);
+  const [params, setParams] = useState({ search: "", category: "" });
+  const queryParams = {
+    page,
+    limit,
+    search: params.search || undefined,
+    category: params.category || undefined,
+  };
   const fields = [
     "Tous",
     "Matériau de construction",
@@ -17,31 +22,36 @@ const ProductPage = () => {
     "equipement electrique",
   ];
 
-  const navigation = useNavigation();
-  if (navigation.state === "loading") {
-    return (
-      <section className="section flex justify-center items-center h-64">
-        <Spinner className="size-9" />
-      </section>
-    );
-  }
+  const { data, isLoading, isError } = useProductsQuery(queryParams);
+
+  const products = data?.products;
 
   return (
     <section>
       <Search
+        onChange={(p) => {
+          setParams(p);
+          setPage(1);
+        }}
         fields={fields}
-        searchTerm={searchTerm}
-        setSearchTerm={setSearchTerm}
-        category={category}
-        setCategory={setCategory}
       />
-      <WrapProduct
-        products={products as Product[]}
-        title={`${
-          params.category?.replace(/^./, (str) => str.toUpperCase()) ?? "Tous"
-        } produits`}
-      />
-      <PaginationContainer />
+      {isLoading ? (
+        <div className="flex justify-center items-center h-[30vh] ">
+          <Spinner className="size-9" />
+        </div>
+      ) : isError ? (
+        "error"
+      ) : (
+        <WrapProduct
+          products={products as Product[]}
+          title={`${
+            params.category?.replace(/^./, (str) => str.toUpperCase()) ?? "Tous"
+          } produits`}
+        />
+      )}
+      {data && (
+        <PaginationContainer data={data} setPage={setPage} page={page} />
+      )}
     </section>
   );
 };

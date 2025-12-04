@@ -7,11 +7,10 @@ import {
 
 import { cn } from "@/lib/utils";
 import { Button, buttonVariants } from "@/components/ui/button";
-import { Link } from "react-router-dom";
 
-function Pagination({ className, ...props }: React.ComponentProps<"nav">) {
+function Pagination({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <nav
+    <div
       role="navigation"
       aria-label="pagination"
       data-slot="pagination"
@@ -41,7 +40,7 @@ function PaginationItem({ ...props }: React.ComponentProps<"li">) {
 type PaginationLinkProps = {
   isActive?: boolean;
 } & Pick<React.ComponentProps<typeof Button>, "size"> &
-  React.ComponentProps<typeof Link>;
+  React.ComponentProps<"button">;
 
 function PaginationLink({
   className,
@@ -50,10 +49,8 @@ function PaginationLink({
   ...props
 }: PaginationLinkProps) {
   return (
-    <Link
-      aria-current={isActive ? "page" : undefined}
+    <Button
       data-slot="pagination-link"
-      data-active={isActive}
       className={cn(
         buttonVariants({
           variant: isActive ? "outline" : "ghost",

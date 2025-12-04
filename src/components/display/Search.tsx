@@ -1,56 +1,60 @@
 import { Input } from "../ui/input";
-import { useNavigate } from "react-router-dom";
 import { Button } from "../ui/button";
+import { useMemo, useState } from "react";
+import debounce from "lodash.debounce";
 
 type Props = {
+  onChange: (value: { search: string; category: string }) => void;
   fields: string[];
-  searchTerm: string;
-  setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
-  category: string;
-  setCategory: React.Dispatch<React.SetStateAction<string>>;
 };
 
-const Search: React.FC<Props> = ({
-  fields,
-  searchTerm,
-  setSearchTerm,
-  category,
-  setCategory,
-}) => {
-  const navigate = useNavigate();
+const Search: React.FC<Props> = ({ onChange, fields }) => {
+  const [search, setSearch] = useState("");
+  const [category, setCategory] = useState("");
 
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    const params = {
-      search: searchTerm,
-      category,
-    };
-    navigate(`/product?${new URLSearchParams(params).toString()}`);
-    console.log(searchTerm);
-    console.log(category);
+  const debouncedOnChange: (value: {
+    search: string;
+    category: string;
+  }) => void = useMemo(
+    () => debounce((next) => onChange(next), 300),
+    [onChange]
+  );
+
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setSearch(value);
+    debouncedOnChange({ search: value, category });
   };
 
-  const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setCategory(e.target.value);
+  const handleCategory = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const value = e.target.value;
+    setCategory(value);
+    // on applique immédiatement la sélection (pas besoin de debounce)
+    onChange({ search, category: value });
   };
 
+  const handleReset = () => {
+    setSearch("");
+    setCategory("");
+    onChange({ search: "", category: "" });
+  };
   return (
     <div className="container py-8">
-      <form className="flex gap-3" onSubmit={handleSearch}>
+      <form className="flex gap-3">
         <Input
           type="text"
           name="search"
           className="w-full"
           placeholder="Rechercher des produits ..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
+          value={search}
+          onChange={handleSearch}
         />
         <select
           name="category"
           id="select_product"
-          value={category}
-          onChange={handleCategoryChange}
           className="w-1/3"
+          defaultValue={category}
+          onChange={handleCategory}
         >
           {fields.map((field) => (
             <option key={field} value={field}>
@@ -58,7 +62,9 @@ const Search: React.FC<Props> = ({
             </option>
           ))}
         </select>
-        <Button type="submit">Search</Button>
+        <Button variant={"outline"} type="button" onClick={handleReset}>
+          Reset
+        </Button>
       </form>
     </div>
   );
