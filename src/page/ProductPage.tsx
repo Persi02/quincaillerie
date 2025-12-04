@@ -2,6 +2,7 @@ import { PaginationContainer, Search, WrapProduct } from "@/components/display";
 import { Spinner } from "@/components/ui/spinner";
 import { useProductsQuery } from "@/hooks/useProductsQuery";
 import type { Product } from "@/utils/type";
+import { ShieldX } from "lucide-react";
 import { useState } from "react";
 
 const ProductPage = () => {
@@ -40,8 +41,14 @@ const ProductPage = () => {
           <Spinner className="size-9" />
         </div>
       ) : isError ? (
-        <div className="text-center h-[30vh]">
-          il y a une erreur ,veuillez recharger la page
+        <div className="h-[30vh] w-full flex flex-col justify-center items-center text-red-500 font-extrabold">
+          <p>
+            Produits indisponible, veuillez verifier votre connexion et
+            recharger la page
+          </p>
+          <div>
+            <ShieldX className="size-20" />
+          </div>
         </div>
       ) : (
         <WrapProduct
