@@ -5,11 +5,13 @@ import HomeLayout from "./components/display/HomeLayout.tsx";
 import ProductPage from "./page/ProductPage.tsx";
 import LandingPage from "./page/LandingPage.tsx";
 import About from "./page/About.tsx";
-import { landingPageLoader } from "./utils/landingLoader.ts";
-import { productPageLoader } from "./utils/productsLoader.ts";
-import ErrorElement from "./components/display/ErrorElement.tsx";
 import NotFound from "./page/NotFound.tsx";
+import { StrictMode } from "react";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { ToastContainer } from "react-toastify";
 
+const queryClient = new QueryClient();
 const router = createBrowserRouter([
   {
     path: "/",
@@ -18,14 +20,10 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <LandingPage />,
-        loader: landingPageLoader,
-        errorElement: <ErrorElement />,
       },
       {
         path: "product",
         element: <ProductPage />,
-        loader: productPageLoader,
-        errorElement: <ErrorElement />,
       },
       { path: "about", element: <About /> },
     ],
@@ -34,5 +32,11 @@ const router = createBrowserRouter([
 ]);
 
 createRoot(document.getElementById("root")!).render(
-  <RouterProvider router={router} />
+  <StrictMode>
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+      <ToastContainer />
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
+  </StrictMode>
 );
