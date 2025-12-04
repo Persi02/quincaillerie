@@ -42,7 +42,7 @@ const LandingPage = () => {
   }
   if (featuredQuery.isError || promoQuery.isError || latestQuery.isError) {
     return (
-      <div className="h-[30vh] w-full flex flex-col justify-center items-center text-red-500 font-extrabold">
+      <div className="h-[30vh] w-full flex flex-col justify-center items-center text-red-500 font-bold">
         <p>
           Produits indisponible, veuillez verifier votre connexion et recharger
           la page

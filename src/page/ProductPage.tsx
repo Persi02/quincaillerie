@@ -23,7 +23,7 @@ const ProductPage = () => {
     "equipement electrique",
   ];
 
-  const { data, isLoading, isError } = useProductsQuery(queryParams);
+  const { data, isLoading } = useProductsQuery(queryParams);
 
   const products = data?.products;
 
@@ -37,10 +37,10 @@ const ProductPage = () => {
         fields={fields}
       />
       {isLoading ? (
-        <div className="flex justify-center items-center h-[30vh] ">
+        <div className="flex justify-center items-center h-[30vh]  text-secondary">
           <Spinner className="size-9" />
         </div>
-      ) : isError ? (
+      ) : !data ? (
         <div className="h-[30vh] w-full flex flex-col justify-center items-center text-red-500 font-extrabold">
           <p>
             Produits indisponible, veuillez verifier votre connexion et
