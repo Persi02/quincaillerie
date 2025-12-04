@@ -6,7 +6,7 @@ import { useState } from "react";
 
 const ProductPage = () => {
   const [page, setPage] = useState(1);
-  const [limit] = useState(10);
+  const [limit] = useState(9);
   const [params, setParams] = useState({ search: "", category: "" });
   const queryParams = {
     page,
@@ -40,12 +40,17 @@ const ProductPage = () => {
           <Spinner className="size-9" />
         </div>
       ) : isError ? (
-        "error"
+        <div className="text-center h-[30vh]">
+          il y a une erreur ,veuillez recharger la page
+        </div>
       ) : (
         <WrapProduct
           products={products as Product[]}
           title={`${
-            params.category?.replace(/^./, (str) => str.toUpperCase()) ?? "Tous"
+            params.category === ""
+              ? "Tous"
+              : params.category?.replace(/^./, (str) => str.toUpperCase()) ??
+                "Tous"
           } produits`}
         />
       )}

@@ -4,7 +4,7 @@ import { Button } from "../ui/button";
 const Header = () => {
   const navigate = useNavigate();
   return (
-    <div className="container flex justify-between py-4">
+    <div className="container flex justify-between py-4 " id="header">
       <div
         className="science-font text-3xl sm:text-4xl font-bold cursor-pointer"
         onClick={() => navigate("/")}
@@ -12,11 +12,13 @@ const Header = () => {
         Quincaillerie
       </div>
       <Button
-      onClick={() => {
+        onClick={() => {
           const el = document.getElementById("footer");
           if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
         }}
-       variant="secondary" className="font-bold">
+        variant="secondary"
+        className="font-bold"
+      >
         Constactez Nous
       </Button>
     </div>

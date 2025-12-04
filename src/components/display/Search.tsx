@@ -29,7 +29,6 @@ const Search: React.FC<Props> = ({ onChange, fields }) => {
   const handleCategory = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const value = e.target.value;
     setCategory(value);
-    // on applique immédiatement la sélection (pas besoin de debounce)
     onChange({ search, category: value });
   };
 
