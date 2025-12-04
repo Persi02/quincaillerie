@@ -3,6 +3,9 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
+import { messageFetch } from "@/utils/customFetch";
+import { toast } from "react-toastify";
+import { useState } from "react";
 const schema = z.object({
   name: z.string().min(2, "Le nom doit avoir au moins 2 caractères"),
   email: z.string().refine((value) => {
@@ -12,15 +15,26 @@ const schema = z.object({
 });
 type FormValue = z.infer<typeof schema>;
 const FormContact = () => {
+  const [isloading, setIsLoading] = useState(false);
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
   } = useForm<FormValue>({ resolver: zodResolver(schema) });
-  const onSubmit = (data: FormValue) => {
-    console.log(data);
-    reset();
+  const onSubmit = async (data: FormValue) => {
+    setIsLoading(true);
+    try {
+      await messageFetch.post("/s", data);
+      toast.success("Message envoyé");
+      scroll(0, 0);
+      reset();
+      setIsLoading(false);
+    } catch (error) {
+      setIsLoading(false);
+      console.log(error);
+      toast.error("Message non envoyé");
+    }
   };
 
   return (
@@ -57,7 +71,7 @@ const FormContact = () => {
         variant="secondary"
         className="font-bold w-10/12 sm:w-full"
       >
-        Envoyer
+        {isloading ? "Envoi en cours..." : "Envoyer"}
       </Button>
     </form>
   );

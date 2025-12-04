@@ -9,6 +9,8 @@ import NotFound from "./page/NotFound.tsx";
 import { StrictMode } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { ToastContainer } from "react-toastify";
+
 const queryClient = new QueryClient();
 const router = createBrowserRouter([
   {
@@ -33,6 +35,7 @@ createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
       <RouterProvider router={router} />
+      <ToastContainer />
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   </StrictMode>

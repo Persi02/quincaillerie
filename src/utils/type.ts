@@ -45,3 +45,9 @@ export type FilterParams = {
   search?: string;
   category?: string;
 };
+
+export type Message = {
+  name: string;
+  email: string;
+  message: string;
+};
