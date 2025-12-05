@@ -25,7 +25,7 @@ const FormContact = () => {
   const onSubmit = async (data: FormValue) => {
     setIsLoading(true);
     try {
-      await messageFetch.post("/s", data);
+      await messageFetch.post("/", data);
       toast.success("Message envoyé");
       scroll(0, 0);
       reset();
