@@ -2,7 +2,39 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import ServicesAbout from "@/components/display/ServicesAbout";
 import Engagement from "@/components/display/Engagement";
+import { useQuery } from "@tanstack/react-query";
+import { productFeturedFetcher } from "@/utils/landingLoader";
+import { Spinner } from "@/components/ui/spinner";
+import { ShieldX } from "lucide-react";
+import { WrapProduct } from "@/components/display";
 const About = () => {
+  const featuredQuery = useQuery({
+    queryKey:["products","featured"],
+    queryFn:productFeturedFetcher,
+  })
+
+  if(featuredQuery.isLoading){
+    return(
+      <div className="h-[30vh] w-full flex justify-center items-center text-secondary font-extrabold">
+        <Spinner className="size-9" />
+      </div>
+    )
+  }
+
+  if(featuredQuery.isError){
+    return (
+      <div className="h-[30vh] w-full flex flex-col justify-center items-center text-red-500 font-bold">
+        <p>
+          Produits indisponible, veuillez verifier votre connexion et recharger
+          la page
+        </p>
+        <div>
+          <ShieldX className="size-20" />
+        </div>
+      </div>
+    );
+  }
+ 
   return (
     <main className="max-w-6xl container px-4 py-12">
       <section className="flex flex-col md:flex-row items-center gap-8 mb-12">
@@ -56,7 +88,11 @@ const About = () => {
       <ServicesAbout />
 
       {/* Produits phares */}
-      <section className="mb-10"></section>
+      <section className="mb-10 ">
+        {featuredQuery.data && (
+        <WrapProduct className="container-prd-abt" products={featuredQuery.data} title="Produits phares" />
+      )}
+      </section>
 
       <section className="mb-10">
         <h2 className="text-2xl font-semibold mb-4">Ils nous font confiance</h2>
